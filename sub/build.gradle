@@ -1,0 +1,3 @@
+apply plugin: 'java'
+
+archivesBaseName='sub-custom-arch'
