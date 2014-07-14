@@ -30,10 +30,10 @@ if (rootProject.hasProperty('nexusUsername') && rootProject.hasProperty('nexusPa
 
 allprojects { p->
     apply plugin: 'maven'
-    apply plugin: 'nexus'
 
 
     if (p.hasProperty('nexusUsername') && p.hasProperty('nexusPassword')) {
+        apply plugin: 'nexus'
         apply from: "${rootProject.rootDir}/gradle/publish.gradle"
     }
 
