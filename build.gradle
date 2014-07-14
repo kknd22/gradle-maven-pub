@@ -4,16 +4,43 @@
  *
  */
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 
 // Apply the java plugin to add support for Java
 apply plugin: 'war'
 
 archivesBaseName='parent-custon-arch'
 
-allprojects {
+if (rootProject.hasProperty('nexusUsername') && rootProject.hasProperty('nexusPassword'))
+    println ("=====> upload to nexus repo is enabled")
+
+allprojects { p->
     apply plugin: 'maven'
-    group = 'com.me'
-    version = '0.1-SNAPSHOT'
+    apply plugin: 'nexus'
+
+
+    if (p.hasProperty('nexusUsername') && p.hasProperty('nexusPassword')) {
+        apply from: "${rootProject.rootDir}/gradle/publish.gradle"
+    }
+
+
+    group = 'aaa.me'
+    version = '0.0.3-SNAPSHOT'
+//    version = '0.0.3-RELEASE'
     configure(install.repositories.mavenInstaller) {
         pom.project {
             inceptionYear '2006'
@@ -26,11 +53,6 @@ allprojects {
                 }
             }
         }
-    }
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
     }
 
 }

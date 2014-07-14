@@ -1,0 +1,28 @@
+modifyPom {
+    project {
+        name 'dm-sonnytype-poc'
+        description 'dm-sonnytype-poc desc'
+        url 'http://dm-sonnytype-poc.ff.com/'
+        //packaging 'jar'
+        organization {
+            name 'fico-dm'
+            url 'http://www.ff.com'
+        }
+        scm {
+            url 'https://ff.com/dm'
+            connection 'scm:git:https://ff.com/dm'
+            developerConnection 'scm:git@ff.com'
+        }
+    }
+}
+
+nexus {
+    attachJavadoc = false
+    attachSources = false
+    attachTests = false
+    sign = false
+    repositoryUrl = 'http://rhlappdip701.fairisaac.com:8081/nexus/content/repositories/releases'
+    snapshotRepositoryUrl = 'http://rhlappdip701.fairisaac.com:8081/nexus/content/repositories/snapshots'
+}
+
+

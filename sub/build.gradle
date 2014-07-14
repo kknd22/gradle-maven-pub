@@ -1,3 +1,25 @@
 apply plugin: 'java'
 
 archivesBaseName='sub-custom-arch'
+
+
+configurations {
+    jsourcesJarC
+}
+
+/*
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task jsourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    jsourcesJarC jsourcesJar
+}
+*/
